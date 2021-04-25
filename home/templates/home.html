@@ -5,10 +5,12 @@
         <meta charset="utf-8">
         <title>여기있대</title>
 
+        <!-- Bootstrap core JS -->
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
         <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
         <!-- Default CSS -->
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     </head>
     <body class="container-fluid d-flex flex-column h-100 w-100 text-center p-5">
         <header class="yj">
@@ -18,63 +20,38 @@
             </nav>
         </header>
 
-        <main class="mt-auto mb-auto yj mx-3">
-            <h1>찾는 상품이 있으신가요?</h1>
+        <main class="mt-auto mb-auto mx-3">
+            <h1 class="yj">찾는 상품이 있으신가요?</h1>
             <input type="text">
-            <a href="#" class="btn btn-secondary">검색</a>
+            <a href="#" class="yj btn btn-secondary">검색</a>
         </main>
-        
-        <h3>맞춤 추천</h3>
-        <main class="container-fluid row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"/>
-                    </svg>
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="yj accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                        맞춤 상품
+                    </button>
+                </h2>
+                <div id="collapseOne" class="collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>맞춤 상품 추천</strong> 개발 중
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"/>
-                    </svg>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="yj accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                        인기 상품
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>인기 상품 추천</strong> 개발 중
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"/>
-                    </svg>
-                </div>
-            </div>
-        </main>
+        </div>
 
         <footer class="text-muted">
         </footer>
