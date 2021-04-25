@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko" class="h-100 w-100">
+    <head>
+        <meta charset="utf-8">
+        <title>여기있대 FAQ</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+        <!-- Default CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <nav class="yj container-fluid navbar navbar-expand-md navbar-dark bg-danger mb-5">
+            <a class="navbar-brand" href="../">여기있대</a>
+            <div class="px-3 navbar-collapse justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="container p-5 bg-lightGray rounded-3">
+            <h1 class="yj">(1) '여기있대'에서 무엇을 할 수 있나요?</h1>
+            <ul class="m-3">
+                <li><h5>사용자의 위치를 기반으로 주위 편의점들의 상품 재고를 한 눈에 볼 수 있습니다.</h></li>
+                <li><h5>사용자의 검색 기록을 토대로 맞춤 상품을 추천받을 수 있습니다.</h></li>
+                <li><h5>SNS에서 인기가 많은 상품을 추천받을 수 있습니다.</h></li>
+            </ul><br>
+            <h1 class="yj">(2) '여기있대'는 유료인가요?</h1>
+            <ul class="m-3">
+                <li><h5>'여기있대'의 모든 서비스는 무료로 제공됩니다.</h></li>
+                <li><h5>다만, 서비스 유지를 위해 광고가 노출될 수 있습니다.</h></li>
+            </ul><br>
+            <h1 class="yj">(3) '여기있대'는 누가 만들었나요?</h1>
+            <ul class="m-3">
+                <li><h5>'여기있대'는 융합시스템공학종합설계의 프로젝트로 만들어졌습니다.</h></li>
+                <li><h5>프로젝트 참여자 : 장유정, 장원석, 장재식, 이태희</h></li>
+            </ul><br>
+            <h1 class="yj">(4) 문의사항은 어디로 연락하나요?</h1>
+            <ul class="m-3">
+                <li><h5>고객센터 : 010-6664-9035 (09:00 ~ 18:00)</h></li>
+            </ul>
+        </main>
+    </body>
+</html>
