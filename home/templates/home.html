@@ -7,6 +7,8 @@
 
         <!-- Bootstrap core JS -->
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <!-- Default JS -->
+        <script src="{% static 'js/default.js' %}"></script>
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
         <!-- Default CSS -->
@@ -22,8 +24,10 @@
 
         <main class="mt-auto mb-auto mx-3">
             <h1 class="yj">찾는 상품이 있으신가요?</h1>
-            <input type="text">
-            <a href="#" class="yj btn btn-secondary">검색</a>
+            <form action="https://www.google.com/search">
+                <input class="w-25 searchBox" type="text" name="q" placeholder="상품명 입력" required>
+                <button class="yj btn btn-secondary">검색</button>
+            </form>
         </main>
 
         <div class="accordion" id="accordionExample">

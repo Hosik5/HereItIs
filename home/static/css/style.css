@@ -14,3 +14,10 @@
 .bg-lightGray {
     background-color:#e4e8ec;
 }
+
+/* Search Box */
+.searchBox {
+    border-color:#dc3545;
+    border-radius: 0.25rem;
+    border-style: solid;
+}
