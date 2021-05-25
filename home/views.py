@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from home.models import Search_history
 
 # Create your views here.
 
