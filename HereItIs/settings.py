@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-m!t8jz51q3ljr5wxc7#e!_c7h@5^dk9@bh)uj4n@tkm#!qv9#^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-3-37-63-164.ap-northeast-2.compute.amazonaws.com', '3.37.63.164', '3.37.63.164:3838', '3.37.63.164:8000']
 
 
 # Application definition
@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'HereItIs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-import my_settings
+#import my_settings
 
-DATABASES = my_settings.DATABASES
+#DATABASES = my_settings.DATABASES
 
 
 # Password validationpython3 manage.py migrate
@@ -124,9 +124,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR,'home','static'))
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, 'home', 'static'),
+#)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
