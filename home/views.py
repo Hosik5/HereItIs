@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from home.models import Search_history
+from .models import Search_history
+from .models import Member_info
 
-# Create your views here.
-
+# HOME
 def home(request):
     return render(request, 'home.html')
 
+# FAQ
 def faq(request):
     return render(request, 'faq.html')
