@@ -18,7 +18,13 @@
         <header class="yj">
             <h3 class="float-md-start mb-0">여기있대</h3>
             <nav class="nav float-md-end">
+                <a class="nav-link" href="">Home</a>
                 <a class="nav-link" href="faq">FAQ</a>
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a>
+                {% else %}
+                <a class="nav-link" href="{% url 'common:login' %}">로그인</a>
+                {% endif %}
             </nav>
         </header>
 
@@ -26,7 +32,7 @@
             <h1 class="yj">찾는 상품이 있으신가요?</h1>
             <form action="https://www.google.com/search">
                 <input class="w-25 searchBox" type="text" name="q" placeholder="상품명 입력" required>
-                <button class="yj btn btn-secondary">검색</button>
+                <button class="yj btn btn-danger">검색</button>
             </form>
         </main>
 
@@ -34,24 +40,28 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="yj accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                        맞춤 상품
+                        인기 상품
                     </button>
                 </h2>
                 <div id="collapseOne" class="collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong>맞춤 상품 추천</strong> 개발 중
+                        <strong>인기 상품 추천</strong> 개발 중
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                     <button class="yj accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                        인기 상품
+                        맞춤 상품
                     </button>
                 </h2>
                 <div id="collapseTwo" class="collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <strong>인기 상품 추천</strong> 개발 중
+                        {% if user.is_authenticated %}
+                            System : 로그인 확인! 맞춤 상품 개발 예정
+                        {% else %}
+                            로그인을 하면 맞춤 상품을 추천받을 수 있습니다.
+                        {% endif %}
                     </div>
                 </div>
             </div>

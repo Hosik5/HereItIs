@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko" class="h-100 w-100">
+    <head>
+        <meta charset="utf-8">
+        <title>여기있대 - 로그인</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- Default CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <nav class="yj container-fluid navbar navbar-expand-md navbar-dark bg-danger mb-5">
+            <a class="navbar-brand" href="../../">여기있대</a>
+            <div class="px-3 navbar-collapse justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../faq">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active">로그인</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        {% block content %}
+        <div class="container p-5 bg-lightGray rounded-3">
+            <div class="yj">
+                <h5>로그인</h5><br>
+            </div>
+            
+            <form method="post" class="post-form" action="{% url 'common:login' %}">
+                {% csrf_token %}
+                {% include "common/form_errors.html" %}
+                <div class="form-group">
+                    <label for="id">아이디</label>
+                    <input type="text" class="form-control" name="username" id="username" value="{{ form.username.value|default_if_none:'' }}">
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" class="form-control" name="password" id="password" value="{{ form.password.value|default_if_none:'' }}">
+                </div><br>
+                <button type="submit" class="btn btn-primary">로그인</button><br><br>
+                <h6><a href="{% url 'common:signup' %}">혹시 계정이 없으신가요?</a></h6>
+                <span>
+            </form>
+        </div>
+        {% endblock %}
+    </body>
+</html>
