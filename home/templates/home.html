@@ -30,9 +30,10 @@
 
         <main class="mt-auto mb-auto mx-3">
             <h1 class="yj">찾는 상품이 있으신가요?</h1>
-            <form action="https://www.google.com/search">
-                <input class="w-25 searchBox" type="text" name="q" placeholder="상품명 입력" required>
-                <button class="yj btn btn-danger">검색</button>
+            <form action="{% url 'search' %}" method="get">
+                {% csrf_token %}
+                <input class="w-25 searchBox" type="text" name="searchbox" placeholder="상품명 입력" required>
+                <button type="submit" class="yj btn btn-danger">검색</button>
             </form>
         </main>
 

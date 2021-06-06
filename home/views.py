@@ -9,3 +9,11 @@ def home(request):
 # FAQ
 def faq(request):
     return render(request, 'faq.html')
+
+# SEARCH
+def search(request):
+    searchbox = request.GET.get('searchbox')
+    context = {
+        'searchbox' : searchbox,
+    }
+    return render(request, 'search.html', context)
