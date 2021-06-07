@@ -12,6 +12,8 @@ product_result.to_csv(r'product_info.csv',index=False)
 search_result = pd.read_sql_query(search_history,conn)
 search_result.to_csv(r'search_history.csv',index=False)
 
+conn.close()
+
 ratings = pd.read_csv('search_history.csv')
 # Surprise 모듈에서 csv파일을 읽어오도록 포맷을 변경해주어야 하기 위해서 따로 저장
 # 이 때, index값과 Header(칼럼명)값들 없애주면서 저장시키기
@@ -25,7 +27,7 @@ reader = Reader(line_format='user item rating', sep=',',
                rating_scale=(0.5, 5))
 
 # DatasetAutoFolds 클래스를 사용해서 개별적으로 생성
-# index와 header가 없는 상태로 재생성했던 ratings_surprise.csv파일에 기반
+# index와 header가 없는 상태로 재생성했던 search_history_surprise.csv파일에 기반
 data_folds = DatasetAutoFolds(ratings_file='search_history_surprise.csv',
                              reader=reader)
 
@@ -34,32 +36,25 @@ trainset = data_folds.build_full_trainset()
 algo = SVD(n_factors=50, n_epochs=20, random_state=42)
 algo.fit(trainset)
 
-# 영화에 대한 정보 데이터 로딩
+# 제품에 대한 정보 데이터 로딩
 products = pd.read_csv('product_info.csv')
 ratings = pd.read_csv('search_history.csv')
 
-# 특정 사용자 9번의 movieId를 추출해서 특정 영화에 대한 평점 있는지 확인
-#productIds = ratings[ratings['member_id']==9]['product_id']
-#if productIds[productIds==298].count() == 0:
-#    print('user id=9인 사람은 movie id=42에 대한 평점이 없음')
-
-# 영화에 대한 정보 데이터에서 movieId가 42인 영화가 무엇인지 출력
-
 
 def get_unseen_surprise(ratings, products, member_id):
-    # 특정 유저가 본 movie id들을 리스트로 할당
+    # 특정 유저가 본 product id들을 리스트로 할당
     seen_products = ratings[ratings['member_id']==member_id]['product_id'].tolist()
-    # 모든 영화들의 movie id들 리스트로 할당
+    # 모든 제품들의 product id들 리스트로 할당
     total_products = products['product_id'].tolist()
     
-    # 모든 영화들의 movie id들 중 특정 유저가 본 movie id를 제외한 나머지 추출
+    # 모든 제품들의 product id들 중 특정 유저가 본 product id를 제외한 나머지 추출
     unseen_products = [products for products in total_products if products not in seen_products]
-    #print(f'특정 {member_id}번 유저가 본 영화 수: {len(seen_products)}\n추천한 영화 개수: {len(unseen_products)}\n전체 영화수: {len(total_movies)}')
+    #print(f'특정 {member_id}번 유저가 본 제품 수: {len(seen_products)}\n추천한 제품 개수: {len(unseen_products)}\n전체 영화수: {len(total_movies)}')
     
     return unseen_products
 
 def recomm_product_by_surprise(algo, member_id, unseen_movies, top_n=5):
-    # 알고리즘 객체의 predict()를 이용해 특정 userId의 평점이 없는 영화들에 대해 평점 예측
+    # 알고리즘 객체의 predict()를 이용해 특정 userId의 평점이 없는 제품들에 대해 평점 예측
     predictions = [algo.predict(str(member_id), str(product_id)) for product_id in unseen_movies]
     
     # predictions는 Prediction()으로 하나의 객체로 되어있기 때문에 예측평점(est값)을 기준으로 정렬해야함
@@ -73,7 +68,7 @@ def recomm_product_by_surprise(algo, member_id, unseen_movies, top_n=5):
     # 상위 n개의 예측값들만 할당
     top_predictions = predictions[:top_n]
     
-    # top_predictions에서 movie id, rating, movie title 각 뽑아내기
+    # top_predictions에서 product id, rating, product name 각 뽑아내기
     top_product_ids = [int(pred.iid) for pred in top_predictions]
     top_product_ratings = [pred.est for pred in top_predictions]
     top_product_titles = products[products.product_id.isin(top_product_ids)]['product_nm']
@@ -91,7 +86,7 @@ top_products_preds = recomm_product_by_surprise(algo, 'rudckf113', unseen_lst,to
 print()
 print('#'*8,'rudckf113 님의 Top-5 추천제품 리스트','#'*8)
 
-# top_movies_preds가 여러가지의 튜플을 담고 있는 리스트이기 때문에 반복문 수행
+# top_products_preds가 여러가지의 튜플을 담고 있는 리스트이기 때문에 반복문 수행
 for top_product in top_products_preds:
     print('* 추천 제품 이름: ', top_product[2])
     print('* 해당 제품의 예측평점: ', top_product[1])
