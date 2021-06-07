@@ -1,6 +1,17 @@
 import pandas as pd
+import pymysql
 import os
-os.chdir('C://Users/이태희/OneDrive - 아주대학교/4학년/1학기/융종설')
+
+conn=pymysql.connect(host='3.37.63.164',port=3306,user='root',password='Here!234',db='here_it_is')
+search_history="select * from home_search_history"
+product_info="select * from home_product_info"
+
+product_result = pd.read_sql_query(product_info,conn)
+product_result.to_csv(r'product_info.csv',index=False)
+
+search_result = pd.read_sql_query(search_history,conn)
+search_result.to_csv(r'search_history.csv',index=False)
+
 ratings = pd.read_csv('search_history.csv')
 # Surprise 모듈에서 csv파일을 읽어오도록 포맷을 변경해주어야 하기 위해서 따로 저장
 # 이 때, index값과 Header(칼럼명)값들 없애주면서 저장시키기
